@@ -5,6 +5,11 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVisualizer", "ImageVisualizer\ImageVisualizer.csproj", "{BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageVisualizerTest", "ImageVisualizerTest\ImageVisualizerTest.csproj", "{CA564A53-7158-4090-9E8A-57B1405EDFB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF} = {BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC6125AC-4702-4D3A-A6E3-15C9E0FBA3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA564A53-7158-4090-9E8A-57B1405EDFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA564A53-7158-4090-9E8A-57B1405EDFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA564A53-7158-4090-9E8A-57B1405EDFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA564A53-7158-4090-9E8A-57B1405EDFB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

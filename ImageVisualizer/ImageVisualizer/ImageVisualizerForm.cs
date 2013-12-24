@@ -11,25 +11,45 @@ namespace ImageVisualizer
 {
     public partial class ImageVisualizerForm : Form
     {
-        private Image previewImage, backgroundImage;
-        private int offset = 1;
-
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             Text = string.Format("Image Visualizer - Width: {0}, Height: {1}, Type: {2}", img.Width, img.Height, img.GetType().Name);
-            previewImage = img;
-            backgroundImage = DrawCheckers(previewImage.Width, previewImage.Height);
+            SetPreview(img);
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        private void SetPreview(Image img)
         {
-            Graphics g = e.Graphics;
-            g.Clear(Color.White);
-            g.DrawRectangle(Pens.Black, offset, offset, previewImage.Width + 1, previewImage.Height + 1);
-            g.DrawImage(backgroundImage, offset + 1, offset + 1, previewImage.Width, previewImage.Height);
-            g.DrawImage(previewImage, offset + 1, offset + 1, previewImage.Width, previewImage.Height);
+            int lineWidth = 2;
+
+            Bitmap bmpPreview = new Bitmap(img.Width + lineWidth * 2, img.Height + lineWidth * 2);
+
+            using (Graphics g = Graphics.FromImage(bmpPreview))
+            {
+                g.Clear(Color.White);
+
+                using (Image checkers = DrawCheckers(img.Width, img.Height))
+                {
+                    g.DrawImage(checkers, lineWidth, lineWidth, img.Width, img.Height);
+                }
+
+                g.DrawImage(img, lineWidth, lineWidth, img.Width, img.Height);
+
+                using (Pen pen1 = new Pen(Color.Black, lineWidth))
+                {
+                    pen1.Alignment = PenAlignment.Inset;
+                    g.DrawRectangle(pen1, 0, 0, img.Width + lineWidth * 2, img.Height + lineWidth * 2);
+                }
+
+                using (Pen pen2 = new Pen(Color.White, lineWidth))
+                {
+                    pen2.Alignment = PenAlignment.Inset;
+                    pen2.DashPattern = new float[] { 3, 3 };
+                    g.DrawRectangle(pen2, 0, 0, img.Width + lineWidth * 2, img.Height + lineWidth * 2);
+                }
+            }
+
+            pbPreview.Image = bmpPreview;
         }
 
         private static Image DrawCheckers(int width, int height)
