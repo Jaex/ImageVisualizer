@@ -18,8 +18,17 @@ namespace ImageVisualizer
 
             if (img != null)
             {
-                ImageVisualizerForm form = new ImageVisualizerForm(img);
-                form.ShowDialog();
+                try
+                {
+                    using (ImageVisualizerForm form = new ImageVisualizerForm(img))
+                    {
+                        form.ShowDialog();
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString(), "ImageVisualizer error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

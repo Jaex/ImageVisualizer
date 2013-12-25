@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,45 +12,100 @@ namespace ImageVisualizer
 {
     public partial class ImageVisualizerForm : Form
     {
+        private int zoom;
+
+        public int Zoom
+        {
+            get
+            {
+                return zoom;
+            }
+            private set
+            {
+                zoom = Between(value, 1, maxZoom);
+            }
+        }
+
+        private Image image;
+        private int maxZoom = 5;
+
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
-            Text = string.Format("Image Visualizer - Width: {0}, Height: {1}, Type: {2}", img.Width, img.Height, img.GetType().Name);
-            SetPreview(img);
+            Zoom = 1;
+            image = img;
+            SetPreview(image, Zoom);
         }
 
-        private void SetPreview(Image img)
+        private void SetPreview(Image img, int zoom = 1)
         {
-            int lineWidth = 2;
+            string title = string.Format("Image Visualizer - Width: {0}, Height: {1}, Type: {2}", img.Width, img.Height, img.GetType().Name);
 
-            Bitmap bmpPreview = new Bitmap(img.Width + lineWidth * 2, img.Height + lineWidth * 2);
+            if (zoom > 1)
+            {
+                title += string.Format(", Zoom: {0}%", zoom * 100);
+            }
+
+            Text = title;
+
+            int lineWidth = 2;
+            int previewWidth = img.Width * zoom;
+            int previewHeight = img.Height * zoom;
+
+            Bitmap bmpPreview = new Bitmap(previewWidth + lineWidth * 2, previewHeight + lineWidth * 2, PixelFormat.Format24bppRgb);
 
             using (Graphics g = Graphics.FromImage(bmpPreview))
             {
-                g.Clear(Color.White);
-
-                using (Image checkers = DrawCheckers(img.Width, img.Height))
+                if (img.PixelFormat == PixelFormat.Format32bppArgb)
                 {
-                    g.DrawImage(checkers, lineWidth, lineWidth, img.Width, img.Height);
+                    using (Image checkers = DrawCheckers(previewWidth, previewHeight))
+                    {
+                        g.DrawImage(checkers, lineWidth, lineWidth, checkers.Width, checkers.Height);
+                    }
                 }
 
-                g.DrawImage(img, lineWidth, lineWidth, img.Width, img.Height);
+                g.DrawRectangle(Pens.White, 0, 0, bmpPreview.Width - 1, bmpPreview.Height - 1);
+                g.DrawRectangle(Pens.Black, 1, 1, bmpPreview.Width - 3, bmpPreview.Height - 3);
 
-                using (Pen pen1 = new Pen(Color.Black, lineWidth))
-                {
-                    pen1.Alignment = PenAlignment.Inset;
-                    g.DrawRectangle(pen1, 0, 0, img.Width + lineWidth * 2, img.Height + lineWidth * 2);
-                }
+                g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                g.DrawImage(img, lineWidth, lineWidth, previewWidth, previewHeight);
+            }
 
-                using (Pen pen2 = new Pen(Color.White, lineWidth))
-                {
-                    pen2.Alignment = PenAlignment.Inset;
-                    pen2.DashPattern = new float[] { 3, 3 };
-                    g.DrawRectangle(pen2, 0, 0, img.Width + lineWidth * 2, img.Height + lineWidth * 2);
-                }
+            if (pbPreview.Image != null)
+            {
+                pbPreview.Image.Dispose();
             }
 
             pbPreview.Image = bmpPreview;
+        }
+
+        private void pbPreview_MouseDown(object sender, MouseEventArgs e)
+        {
+            int previousZoom = Zoom;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                Zoom++;
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                Zoom--;
+            }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                Zoom = 1;
+            }
+
+            if (Zoom != previousZoom)
+            {
+                SetPreview(image, Zoom);
+            }
+        }
+
+        private static int Between(int num, int min, int max)
+        {
+            return Math.Max(min, Math.Min(max, num));
         }
 
         private static Image DrawCheckers(int width, int height)

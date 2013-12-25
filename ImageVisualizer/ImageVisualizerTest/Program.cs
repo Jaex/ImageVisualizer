@@ -17,9 +17,17 @@ namespace ImageVisualizerTest
 
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
-                Image img = Image.FromFile(filePath);
-                Console.WriteLine("Image width: {0}, height: {1}", img.Width, img.Height);
-                if (Debugger.IsAttached) Debugger.Break();
+                Image imageTest = Image.FromFile(filePath);
+
+                if (imageTest != null)
+                {
+                    Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", imageTest.Width, imageTest.Height, imageTest.GetType().Name);
+
+                    if (Debugger.IsAttached)
+                    {
+                        Debugger.Break();
+                    }
+                }
             }
         }
 

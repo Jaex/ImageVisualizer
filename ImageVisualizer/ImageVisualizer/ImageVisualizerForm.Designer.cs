@@ -35,12 +35,14 @@
             // 
             // pbPreview
             // 
+            this.pbPreview.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbPreview.Location = new System.Drawing.Point(0, 0);
             this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(392, 304);
+            this.pbPreview.Size = new System.Drawing.Size(400, 300);
             this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbPreview.TabIndex = 0;
             this.pbPreview.TabStop = false;
+            this.pbPreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseDown);
             // 
             // ImageVisualizerForm
             // 
@@ -48,7 +50,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(488, 392);
+            this.ClientSize = new System.Drawing.Size(584, 462);
             this.Controls.Add(this.pbPreview);
             this.MinimizeBox = false;
             this.Name = "ImageVisualizerForm";
