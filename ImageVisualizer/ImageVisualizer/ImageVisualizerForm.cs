@@ -67,8 +67,12 @@ namespace ImageVisualizer
                 g.DrawRectangle(Pens.White, 0, 0, bmpPreview.Width - 1, bmpPreview.Height - 1);
                 g.DrawRectangle(Pens.Black, 1, 1, bmpPreview.Width - 3, bmpPreview.Height - 3);
 
-                g.InterpolationMode = InterpolationMode.NearestNeighbor;
-                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                if (zoom > 1)
+                {
+                    g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                }
+
                 g.DrawImage(img, lineWidth, lineWidth, previewWidth, previewHeight);
             }
 

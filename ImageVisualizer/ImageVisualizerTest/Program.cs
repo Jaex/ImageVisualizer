@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageVisualizerTest.Properties;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -13,22 +14,34 @@ namespace ImageVisualizerTest
         [STAThread]
         private static void Main()
         {
+            Image imageTest = ImageFromResource();
+
+            if (imageTest != null)
+            {
+                Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", imageTest.Width, imageTest.Height, imageTest.GetType().Name);
+
+                if (Debugger.IsAttached)
+                {
+                    Debugger.Break();
+                }
+            }
+        }
+
+        private static Image ImageFromResource()
+        {
+            return Resources.Test;
+        }
+
+        private static Image ImageFromFile()
+        {
             string filePath = OpenImageFileDialog();
 
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
-                Image imageTest = Image.FromFile(filePath);
-
-                if (imageTest != null)
-                {
-                    Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", imageTest.Width, imageTest.Height, imageTest.GetType().Name);
-
-                    if (Debugger.IsAttached)
-                    {
-                        Debugger.Break();
-                    }
-                }
+                return Image.FromFile(filePath);
             }
+
+            return null;
         }
 
         private static string OpenImageFileDialog()
