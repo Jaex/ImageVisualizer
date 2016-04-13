@@ -22,36 +22,22 @@
 
 #endregion License Information (GPL v3)
 
-using Microsoft.VisualStudio.DebuggerVisualizers;
-using System;
-using System.Diagnostics;
-using System.Drawing;
 using System.Windows.Forms;
-
-[assembly: DebuggerVisualizer(typeof(ImageVisualizer.ImageVisualizer), typeof(VisualizerObjectSource), Target = typeof(Image), Description = "Image Visualizer")]
 
 namespace ImageVisualizer
 {
-    public class ImageVisualizer : DialogDebuggerVisualizer
+    public static class Extensions
     {
-        protected override void Show(IDialogVisualizerService windowService, IVisualizerObjectProvider objectProvider)
+        public static int Between(this int num, int min, int max)
         {
-            Image img = objectProvider.GetObject() as Image;
+            if (num <= min) return min;
+            if (num >= max) return max;
+            return num;
+        }
 
-            if (img != null)
-            {
-                try
-                {
-                    using (ImageVisualizerForm form = new ImageVisualizerForm(img))
-                    {
-                        form.ShowDialog();
-                    }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString(), "Image Visualizer error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+        public static void HideImageMargin(this ToolStripDropDownItem tsddi)
+        {
+            ((ToolStripDropDownMenu)tsddi.DropDown).ShowImageMargin = false;
         }
     }
 }

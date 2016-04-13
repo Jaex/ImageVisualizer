@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jaex")]
 [assembly: AssemblyProduct("ImageVisualizer")]
-[assembly: AssemblyCopyright("Copyright (C) Jaex")]
+[assembly: AssemblyCopyright("Copyright (c) Jaex")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

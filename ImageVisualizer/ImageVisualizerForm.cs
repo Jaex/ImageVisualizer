@@ -1,7 +1,7 @@
 ﻿#region License Information (GPL v3)
 
 /*
-    Copyright (C) Jaex
+    Copyright (c) Jaex
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
@@ -32,7 +32,9 @@ namespace ImageVisualizer
 {
     public partial class ImageVisualizerForm : Form
     {
-        private int zoom;
+        private const int MaxZoom = 5;
+
+        private int zoom = 1;
 
         public int Zoom
         {
@@ -42,37 +44,50 @@ namespace ImageVisualizer
             }
             private set
             {
-                zoom = Between(value, 1, maxZoom);
+                int tempZoom = value.Between(1, MaxZoom);
+
+                if (tempZoom != zoom)
+                {
+                    zoom = tempZoom;
+
+                    UpdatePreview();
+                }
             }
         }
 
         private Image image;
-        private int maxZoom = 5;
 
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
-            Zoom = 1;
+            tsddbZoom.HideImageMargin();
             image = img;
-            SetPreview(image, Zoom);
+            UpdatePreview();
         }
 
-        private void SetPreview(Image img, int zoom = 1)
+        private void UpdatePreview()
         {
+            UpdatePreview(image, Zoom);
+        }
+
+        private void UpdatePreview(Image img, int zoom = 1)
+        {
+            if (img == null)
+            {
+                return;
+            }
+
             string title = string.Format("Image Visualizer - Width: {0}, Height: {1}, Type: {2}", img.Width, img.Height, img.GetType().Name);
 
-            if (zoom > 1)
-            {
-                title += string.Format(", Zoom: {0}%", zoom * 100);
-            }
+            tsddbZoom.Text = string.Format("Zoom: {0}%", zoom * 100);
 
             Text = title;
 
-            int lineWidth = 2;
+            int lineSize = 2;
             int previewWidth = img.Width * zoom;
             int previewHeight = img.Height * zoom;
 
-            Bitmap bmpPreview = new Bitmap(previewWidth + lineWidth * 2, previewHeight + lineWidth * 2, PixelFormat.Format24bppRgb);
+            Bitmap bmpPreview = new Bitmap(previewWidth + lineSize * 2, previewHeight + lineSize * 2, PixelFormat.Format24bppRgb);
 
             using (Graphics g = Graphics.FromImage(bmpPreview))
             {
@@ -80,7 +95,7 @@ namespace ImageVisualizer
                 {
                     using (Image checkers = DrawCheckers(previewWidth, previewHeight))
                     {
-                        g.DrawImage(checkers, lineWidth, lineWidth, checkers.Width, checkers.Height);
+                        g.DrawImage(checkers, lineSize, lineSize, checkers.Width, checkers.Height);
                     }
                 }
 
@@ -93,7 +108,7 @@ namespace ImageVisualizer
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 }
 
-                g.DrawImage(img, lineWidth, lineWidth, previewWidth, previewHeight);
+                g.DrawImage(img, lineSize, lineSize, previewWidth, previewHeight);
             }
 
             if (pbPreview.Image != null)
@@ -104,32 +119,39 @@ namespace ImageVisualizer
             pbPreview.Image = bmpPreview;
         }
 
-        private void pbPreview_MouseDown(object sender, MouseEventArgs e)
+        private void tsmiZoom100_Click(object sender, EventArgs e)
         {
-            int previousZoom = Zoom;
-
-            if (e.Button == MouseButtons.Left)
-            {
-                Zoom++;
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
-                Zoom--;
-            }
-            else if (e.Button == MouseButtons.Middle)
-            {
-                Zoom = 1;
-            }
-
-            if (Zoom != previousZoom)
-            {
-                SetPreview(image, Zoom);
-            }
+            Zoom = 1;
         }
 
-        private static int Between(int num, int min, int max)
+        private void tsmiZoom200_Click(object sender, EventArgs e)
         {
-            return Math.Max(min, Math.Min(max, num));
+            Zoom = 2;
+        }
+
+        private void tsmiZoom300_Click(object sender, EventArgs e)
+        {
+            Zoom = 3;
+        }
+
+        private void tsmiZoom400_Click(object sender, EventArgs e)
+        {
+            Zoom = 4;
+        }
+
+        private void tsmiZoom500_Click(object sender, EventArgs e)
+        {
+            Zoom = 5;
+        }
+
+        private void tsbCopyImage_Click(object sender, EventArgs e)
+        {
+            Helpers.CopyImage(image);
+        }
+
+        private void tsbSaveImage_Click(object sender, EventArgs e)
+        {
+            Helpers.SaveImage(image);
         }
 
         private static Image DrawCheckers(int width, int height)
