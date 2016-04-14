@@ -76,9 +76,6 @@
   <ItemGroup>
     <None Include="Resources\magnifier.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\image.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "%25USERPROFILE%25\Documents\Visual Studio 2015\Visualizers\$(TargetFileName)"</PostBuildEvent>

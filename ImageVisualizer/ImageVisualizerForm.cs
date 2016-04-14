@@ -72,14 +72,17 @@ namespace ImageVisualizer
 
         private void UpdatePreview(Image img)
         {
-            tsddbZoom.Text = string.Format("Zoom: {0}%", Zoom * 100);
+            tsddbZoom.Text = $"Zoom: {Zoom * 100}%";
 
             if (img == null)
             {
                 return;
             }
 
-            tsslStatus.Text = string.Format("Width: {0}px, Height: {1}px, Pixel format: {2}, Type: {3}", img.Width, img.Height, img.PixelFormat, img.GetType().Name);
+            tsslStatusWidth.Text = $"Width: {img.Width}px";
+            tsslStatusHeight.Text = $"Height: {img.Height}px";
+            tsslStatusPixelFormat.Text = $"Pixel format: {img.PixelFormat}";
+            tsslStatusType.Text = $"Type: {img.GetType().Name}";
 
             int lineSize = 2;
             int previewWidth = img.Width * Zoom;

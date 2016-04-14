@@ -38,14 +38,9 @@ namespace ImageVisualizerTest
         {
             Image testImage = GetImageFromResource();
 
-            if (testImage != null)
+            if (Debugger.IsAttached)
             {
-                Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", testImage.Width, testImage.Height, testImage.GetType().Name);
-
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
+                Debugger.Break();
             }
         }
 
