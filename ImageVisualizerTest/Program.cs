@@ -36,11 +36,11 @@ namespace ImageVisualizerTest
         [STAThread]
         private static void Main()
         {
-            Image imageTest = ImageFromResource();
+            Image testImage = GetImageFromResource();
 
-            if (imageTest != null)
+            if (testImage != null)
             {
-                Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", imageTest.Width, imageTest.Height, imageTest.GetType().Name);
+                Console.WriteLine("Width: {0}, Height: {1}, Type: {2}", testImage.Width, testImage.Height, testImage.GetType().Name);
 
                 if (Debugger.IsAttached)
                 {
@@ -49,12 +49,12 @@ namespace ImageVisualizerTest
             }
         }
 
-        private static Image ImageFromResource()
+        private static Image GetImageFromResource()
         {
             return Resources.Test;
         }
 
-        private static Image ImageFromFile()
+        private static Image GetImageFromFile()
         {
             string filePath = OpenImageFileDialog();
 

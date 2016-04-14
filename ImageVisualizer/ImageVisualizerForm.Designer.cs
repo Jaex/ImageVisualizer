@@ -29,8 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageVisualizerForm));
             this.tscMain = new System.Windows.Forms.ToolStripContainer();
+            this.ssMain = new System.Windows.Forms.StatusStrip();
+            this.tsslStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbPreview = new System.Windows.Forms.PictureBox();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsddbZoom = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiZoom100 = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,33 +40,66 @@
             this.tsmiZoom300 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZoom400 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiZoom500 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbPreview = new System.Windows.Forms.PictureBox();
             this.tsbCopyImage = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveImage = new System.Windows.Forms.ToolStripButton();
+            this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.ContentPanel.SuspendLayout();
             this.tscMain.TopToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
-            this.tsMain.SuspendLayout();
+            this.ssMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tscMain
             // 
             // 
+            // tscMain.BottomToolStripPanel
+            // 
+            this.tscMain.BottomToolStripPanel.Controls.Add(this.ssMain);
+            // 
             // tscMain.ContentPanel
             // 
             this.tscMain.ContentPanel.Controls.Add(this.pbPreview);
-            this.tscMain.ContentPanel.Size = new System.Drawing.Size(584, 436);
+            this.tscMain.ContentPanel.Size = new System.Drawing.Size(684, 515);
             this.tscMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tscMain.Location = new System.Drawing.Point(0, 0);
             this.tscMain.Name = "tscMain";
-            this.tscMain.Size = new System.Drawing.Size(584, 461);
+            this.tscMain.Size = new System.Drawing.Size(684, 561);
             this.tscMain.TabIndex = 1;
             this.tscMain.Text = "toolStripContainer1";
             // 
             // tscMain.TopToolStripPanel
             // 
             this.tscMain.TopToolStripPanel.Controls.Add(this.tsMain);
+            // 
+            // ssMain
+            // 
+            this.ssMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.ssMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslStatus});
+            this.ssMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.ssMain.Location = new System.Drawing.Point(0, 0);
+            this.ssMain.Name = "ssMain";
+            this.ssMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.ssMain.Size = new System.Drawing.Size(684, 21);
+            this.ssMain.TabIndex = 0;
+            // 
+            // tsslStatus
+            // 
+            this.tsslStatus.Image = global::ImageVisualizer.Properties.Resources.image;
+            this.tsslStatus.Margin = new System.Windows.Forms.Padding(2, 3, 0, 2);
+            this.tsslStatus.Name = "tsslStatus";
+            this.tsslStatus.Size = new System.Drawing.Size(16, 16);
+            // 
+            // pbPreview
+            // 
+            this.pbPreview.Location = new System.Drawing.Point(0, 0);
+            this.pbPreview.Name = "pbPreview";
+            this.pbPreview.Size = new System.Drawing.Size(400, 300);
+            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbPreview.TabIndex = 0;
+            this.pbPreview.TabStop = false;
             // 
             // tsMain
             // 
@@ -98,51 +133,41 @@
             // tsmiZoom100
             // 
             this.tsmiZoom100.Name = "tsmiZoom100";
-            this.tsmiZoom100.Size = new System.Drawing.Size(152, 22);
+            this.tsmiZoom100.Size = new System.Drawing.Size(102, 22);
             this.tsmiZoom100.Text = "100%";
             this.tsmiZoom100.Click += new System.EventHandler(this.tsmiZoom100_Click);
             // 
             // tsmiZoom200
             // 
             this.tsmiZoom200.Name = "tsmiZoom200";
-            this.tsmiZoom200.Size = new System.Drawing.Size(152, 22);
+            this.tsmiZoom200.Size = new System.Drawing.Size(102, 22);
             this.tsmiZoom200.Text = "200%";
             this.tsmiZoom200.Click += new System.EventHandler(this.tsmiZoom200_Click);
             // 
             // tsmiZoom300
             // 
             this.tsmiZoom300.Name = "tsmiZoom300";
-            this.tsmiZoom300.Size = new System.Drawing.Size(152, 22);
+            this.tsmiZoom300.Size = new System.Drawing.Size(102, 22);
             this.tsmiZoom300.Text = "300%";
             this.tsmiZoom300.Click += new System.EventHandler(this.tsmiZoom300_Click);
             // 
             // tsmiZoom400
             // 
             this.tsmiZoom400.Name = "tsmiZoom400";
-            this.tsmiZoom400.Size = new System.Drawing.Size(152, 22);
+            this.tsmiZoom400.Size = new System.Drawing.Size(102, 22);
             this.tsmiZoom400.Text = "400%";
             this.tsmiZoom400.Click += new System.EventHandler(this.tsmiZoom400_Click);
             // 
             // tsmiZoom500
             // 
             this.tsmiZoom500.Name = "tsmiZoom500";
-            this.tsmiZoom500.Size = new System.Drawing.Size(152, 22);
+            this.tsmiZoom500.Size = new System.Drawing.Size(102, 22);
             this.tsmiZoom500.Text = "500%";
             this.tsmiZoom500.Click += new System.EventHandler(this.tsmiZoom500_Click);
             // 
-            // pbPreview
-            // 
-            this.pbPreview.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbPreview.Location = new System.Drawing.Point(0, 0);
-            this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(400, 300);
-            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbPreview.TabIndex = 0;
-            this.pbPreview.TabStop = false;
-            // 
             // tsbCopyImage
             // 
-            this.tsbCopyImage.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopyImage.Image")));
+            this.tsbCopyImage.Image = global::ImageVisualizer.Properties.Resources.document_copy;
             this.tsbCopyImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCopyImage.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbCopyImage.Name = "tsbCopyImage";
@@ -152,7 +177,7 @@
             // 
             // tsbSaveImage
             // 
-            this.tsbSaveImage.Image = ((System.Drawing.Image)(resources.GetObject("tsbSaveImage.Image")));
+            this.tsbSaveImage.Image = global::ImageVisualizer.Properties.Resources.disk_black;
             this.tsbSaveImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSaveImage.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.tsbSaveImage.Name = "tsbSaveImage";
@@ -166,24 +191,29 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(584, 461);
+            this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.tscMain);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "ImageVisualizerForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Visualizer";
             this.TopMost = true;
+            this.tscMain.BottomToolStripPanel.ResumeLayout(false);
+            this.tscMain.BottomToolStripPanel.PerformLayout();
             this.tscMain.ContentPanel.ResumeLayout(false);
             this.tscMain.ContentPanel.PerformLayout();
             this.tscMain.TopToolStripPanel.ResumeLayout(false);
             this.tscMain.TopToolStripPanel.PerformLayout();
             this.tscMain.ResumeLayout(false);
             this.tscMain.PerformLayout();
+            this.ssMain.ResumeLayout(false);
+            this.ssMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -201,5 +231,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiZoom300;
         private System.Windows.Forms.ToolStripMenuItem tsmiZoom400;
         private System.Windows.Forms.ToolStripMenuItem tsmiZoom500;
+        private System.Windows.Forms.StatusStrip ssMain;
+        private System.Windows.Forms.ToolStripStatusLabel tsslStatus;
     }
 }

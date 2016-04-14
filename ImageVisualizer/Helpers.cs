@@ -38,7 +38,7 @@ namespace ImageVisualizer
             }
         }
 
-        public static string SaveImage(Image img)
+        public static string SaveImageAsFile(Image img)
         {
             if (img != null)
             {

@@ -67,25 +67,23 @@ namespace ImageVisualizer
 
         private void UpdatePreview()
         {
-            UpdatePreview(image, Zoom);
+            UpdatePreview(image);
         }
 
-        private void UpdatePreview(Image img, int zoom = 1)
+        private void UpdatePreview(Image img)
         {
+            tsddbZoom.Text = string.Format("Zoom: {0}%", Zoom * 100);
+
             if (img == null)
             {
                 return;
             }
 
-            string title = string.Format("Image Visualizer - Width: {0}, Height: {1}, Type: {2}", img.Width, img.Height, img.GetType().Name);
-
-            tsddbZoom.Text = string.Format("Zoom: {0}%", zoom * 100);
-
-            Text = title;
+            tsslStatus.Text = string.Format("Width: {0}px, Height: {1}px, Pixel format: {2}, Type: {3}", img.Width, img.Height, img.PixelFormat, img.GetType().Name);
 
             int lineSize = 2;
-            int previewWidth = img.Width * zoom;
-            int previewHeight = img.Height * zoom;
+            int previewWidth = img.Width * Zoom;
+            int previewHeight = img.Height * Zoom;
 
             Bitmap bmpPreview = new Bitmap(previewWidth + lineSize * 2, previewHeight + lineSize * 2, PixelFormat.Format24bppRgb);
 
@@ -102,7 +100,7 @@ namespace ImageVisualizer
                 g.DrawRectangle(Pens.White, 0, 0, bmpPreview.Width - 1, bmpPreview.Height - 1);
                 g.DrawRectangle(Pens.Black, 1, 1, bmpPreview.Width - 3, bmpPreview.Height - 3);
 
-                if (zoom > 1)
+                if (Zoom > 1)
                 {
                     g.InterpolationMode = InterpolationMode.NearestNeighbor;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -151,7 +149,7 @@ namespace ImageVisualizer
 
         private void tsbSaveImage_Click(object sender, EventArgs e)
         {
-            Helpers.SaveImage(image);
+            Helpers.SaveImageAsFile(image);
         }
 
         private static Image DrawCheckers(int width, int height)
