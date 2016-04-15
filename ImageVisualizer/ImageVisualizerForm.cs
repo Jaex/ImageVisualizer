@@ -32,7 +32,7 @@ namespace ImageVisualizer
 {
     public partial class ImageVisualizerForm : Form
     {
-        private const int MaxZoom = 5;
+        private const int MaxZoom = 10;
 
         private int zoom = 1;
 
@@ -60,8 +60,22 @@ namespace ImageVisualizer
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
-            tsddbZoom.HideImageMargin();
             image = img;
+            UpdateControls();
+        }
+
+        private void UpdateControls()
+        {
+            tsddbZoom.HideImageMargin();
+
+            for (int i = 0; i < MaxZoom; i++)
+            {
+                int currentZoom = i + 1;
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(currentZoom * 100 + "%");
+                tsmi.Click += (sender, e) => Zoom = currentZoom;
+                tsddbZoom.DropDownItems.Add(tsmi);
+            }
+
             UpdatePreview();
         }
 
@@ -118,31 +132,6 @@ namespace ImageVisualizer
             }
 
             pbPreview.Image = bmpPreview;
-        }
-
-        private void tsmiZoom100_Click(object sender, EventArgs e)
-        {
-            Zoom = 1;
-        }
-
-        private void tsmiZoom200_Click(object sender, EventArgs e)
-        {
-            Zoom = 2;
-        }
-
-        private void tsmiZoom300_Click(object sender, EventArgs e)
-        {
-            Zoom = 3;
-        }
-
-        private void tsmiZoom400_Click(object sender, EventArgs e)
-        {
-            Zoom = 4;
-        }
-
-        private void tsmiZoom500_Click(object sender, EventArgs e)
-        {
-            Zoom = 5;
         }
 
         private void tsbCopyImage_Click(object sender, EventArgs e)

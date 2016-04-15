@@ -34,9 +34,9 @@ namespace ImageVisualizer
 {
     public class ImageVisualizer : DialogDebuggerVisualizer
     {
-        protected override void Show(IDialogVisualizerService windowService, IVisualizerObjectProvider objectProvider)
+        protected override void Show(IDialogVisualizerService service, IVisualizerObjectProvider provider)
         {
-            Image img = objectProvider.GetObject() as Image;
+            Image img = provider.GetObject() as Image;
 
             if (img != null)
             {
