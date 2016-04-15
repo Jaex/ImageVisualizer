@@ -34,6 +34,8 @@ namespace ImageVisualizer
     {
         private const int MaxZoom = 10;
 
+        public Image Image { get; private set; }
+
         private int zoom = 1;
 
         public int Zoom
@@ -55,12 +57,10 @@ namespace ImageVisualizer
             }
         }
 
-        private Image image;
-
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
-            image = img;
+            Image = img;
             UpdateControls();
         }
 
@@ -81,7 +81,7 @@ namespace ImageVisualizer
 
         private void UpdatePreview()
         {
-            UpdatePreview(image);
+            UpdatePreview(Image);
         }
 
         private void UpdatePreview(Image img)
@@ -108,7 +108,7 @@ namespace ImageVisualizer
             {
                 if (img.PixelFormat == PixelFormat.Format32bppArgb)
                 {
-                    using (Image checkers = DrawCheckers(previewWidth, previewHeight))
+                    using (Image checkers = Helpers.DrawCheckers(previewWidth, previewHeight))
                     {
                         g.DrawImage(checkers, lineSize, lineSize, checkers.Width, checkers.Height);
                     }
@@ -126,58 +126,27 @@ namespace ImageVisualizer
                 g.DrawImage(img, lineSize, lineSize, previewWidth, previewHeight);
             }
 
-            if (pbPreview.Image != null)
+            SetPreviewImage(bmpPreview);
+        }
+
+        private void SetPreviewImage(Image img)
+        {
+            if (pbPreview.IsValidImage())
             {
                 pbPreview.Image.Dispose();
             }
 
-            pbPreview.Image = bmpPreview;
+            pbPreview.Image = img;
         }
 
         private void tsbCopyImage_Click(object sender, EventArgs e)
         {
-            Helpers.CopyImage(image);
+            Helpers.CopyImage(Image);
         }
 
         private void tsbSaveImage_Click(object sender, EventArgs e)
         {
-            Helpers.SaveImageAsFile(image);
-        }
-
-        private static Image DrawCheckers(int width, int height)
-        {
-            Bitmap bmp = new Bitmap(width, height);
-
-            using (Graphics g = Graphics.FromImage(bmp))
-            using (Image checker = CreateCheckers(8, Color.LightGray, Color.White))
-            using (Brush checkerBrush = new TextureBrush(checker, WrapMode.Tile))
-            {
-                g.FillRectangle(checkerBrush, new Rectangle(0, 0, bmp.Width, bmp.Height));
-            }
-
-            return bmp;
-        }
-
-        private static Image CreateCheckers(int size, Color color1, Color color2)
-        {
-            return CreateCheckers(size, size, color1, color2);
-        }
-
-        private static Image CreateCheckers(int width, int height, Color color1, Color color2)
-        {
-            Bitmap bmp = new Bitmap(width * 2, height * 2);
-
-            using (Graphics g = Graphics.FromImage(bmp))
-            using (Brush brush1 = new SolidBrush(color1))
-            using (Brush brush2 = new SolidBrush(color2))
-            {
-                g.FillRectangle(brush1, 0, 0, width, height);
-                g.FillRectangle(brush1, width, height, width, height);
-                g.FillRectangle(brush2, width, 0, width, height);
-                g.FillRectangle(brush2, 0, height, width, height);
-            }
-
-            return bmp;
+            Helpers.SaveImageAsFile(Image);
         }
     }
 }

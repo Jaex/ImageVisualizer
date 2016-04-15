@@ -150,6 +150,7 @@
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.tsMain.ShowItemToolTips = false;
             this.tsMain.Size = new System.Drawing.Size(684, 25);
             this.tsMain.Stretch = true;
             this.tsMain.TabIndex = 0;

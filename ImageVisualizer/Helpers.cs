@@ -23,6 +23,7 @@
 #endregion License Information (GPL v3)
 
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
@@ -64,7 +65,43 @@ namespace ImageVisualizer
             return null;
         }
 
-        private static ImageFormat GetImageFormat(string filePath)
+        public static Image DrawCheckers(int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            using (Image checker = CreateCheckers(8, Color.LightGray, Color.White))
+            using (Brush checkerBrush = new TextureBrush(checker, WrapMode.Tile))
+            {
+                g.FillRectangle(checkerBrush, new Rectangle(0, 0, bmp.Width, bmp.Height));
+            }
+
+            return bmp;
+        }
+
+        public static Image CreateCheckers(int size, Color color1, Color color2)
+        {
+            return CreateCheckers(size, size, color1, color2);
+        }
+
+        public static Image CreateCheckers(int width, int height, Color color1, Color color2)
+        {
+            Bitmap bmp = new Bitmap(width * 2, height * 2);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            using (Brush brush1 = new SolidBrush(color1))
+            using (Brush brush2 = new SolidBrush(color2))
+            {
+                g.FillRectangle(brush1, 0, 0, width, height);
+                g.FillRectangle(brush1, width, height, width, height);
+                g.FillRectangle(brush2, width, 0, width, height);
+                g.FillRectangle(brush2, 0, height, width, height);
+            }
+
+            return bmp;
+        }
+
+        public static ImageFormat GetImageFormat(string filePath)
         {
             ImageFormat imageFormat = ImageFormat.Png;
 
@@ -101,7 +138,7 @@ namespace ImageVisualizer
         }
 
         // Extension without dot
-        private static string GetFilenameExtension(string filePath)
+        public static string GetFilenameExtension(string filePath)
         {
             if (!string.IsNullOrEmpty(filePath))
             {

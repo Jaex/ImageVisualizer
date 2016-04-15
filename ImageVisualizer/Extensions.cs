@@ -39,5 +39,10 @@ namespace ImageVisualizer
         {
             ((ToolStripDropDownMenu)tsddi.DropDown).ShowImageMargin = false;
         }
+
+        public static bool IsValidImage(this PictureBox pb)
+        {
+            return pb.Image != null && pb.Image != pb.InitialImage && pb.Image != pb.ErrorImage;
+        }
     }
 }
