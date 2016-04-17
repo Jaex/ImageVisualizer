@@ -27,6 +27,6 @@ This will open Image Visualizer window which will allow you to preview image. In
 
 2. Post build event of Visual Studio will copy `ImageVisualizer.dll` file to `%USERPROFILE%\Documents\Visual Studio 2015\Visualizers` folder automatically. If you are not using Visual Studio 2015 then manually copy `ImageVisualizer.dll` file to appropriate folder.
 
-## Credits:
+## Credits
 
 Icons: [Fugue Icons](http://p.yusukekamiyamane.com)
