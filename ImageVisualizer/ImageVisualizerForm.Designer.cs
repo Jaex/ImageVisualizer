@@ -137,6 +137,9 @@
             this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbPreview.TabIndex = 0;
             this.pbPreview.TabStop = false;
+            this.pbPreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseDown);
+            this.pbPreview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseMove);
+            this.pbPreview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseUp);
             // 
             // tsMain
             // 

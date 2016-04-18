@@ -48,6 +48,8 @@ namespace ImageVisualizer
             {
                 int tempZoom = value.Between(1, MaxZoom);
 
+                tsddbZoom.Text = $"Zoom: {tempZoom * 100}%";
+
                 if (tempZoom != zoom)
                 {
                     zoom = tempZoom;
@@ -57,10 +59,13 @@ namespace ImageVisualizer
             }
         }
 
+        private Point dragStartPosition;
+
         public ImageVisualizerForm(Image img)
         {
             InitializeComponent();
             Image = img;
+            Zoom = 1;
             UpdateControls();
         }
 
@@ -86,18 +91,21 @@ namespace ImageVisualizer
 
         private void UpdatePreview(Image img)
         {
-            tsddbZoom.Text = $"Zoom: {Zoom * 100}%";
-
-            if (img == null)
+            if (img != null)
             {
-                return;
+                tsslStatusWidth.Text = $"Width: {img.Width}px";
+                tsslStatusHeight.Text = $"Height: {img.Height}px";
+                tsslStatusPixelFormat.Text = $"Pixel format: {img.PixelFormat}";
+                tsslStatusType.Text = $"Type: {img.GetType().Name}";
+
+                Bitmap bmpPreview = RenderPreview(img);
+
+                SetPreviewImage(bmpPreview);
             }
+        }
 
-            tsslStatusWidth.Text = $"Width: {img.Width}px";
-            tsslStatusHeight.Text = $"Height: {img.Height}px";
-            tsslStatusPixelFormat.Text = $"Pixel format: {img.PixelFormat}";
-            tsslStatusType.Text = $"Type: {img.GetType().Name}";
-
+        private Bitmap RenderPreview(Image img)
+        {
             int lineSize = 2;
             int previewWidth = img.Width * Zoom;
             int previewHeight = img.Height * Zoom;
@@ -126,7 +134,7 @@ namespace ImageVisualizer
                 g.DrawImage(img, lineSize, lineSize, previewWidth, previewHeight);
             }
 
-            SetPreviewImage(bmpPreview);
+            return bmpPreview;
         }
 
         private void SetPreviewImage(Image img)
@@ -147,6 +155,29 @@ namespace ImageVisualizer
         private void tsbSaveImage_Click(object sender, EventArgs e)
         {
             Helpers.SaveImageAsFile(Image);
+        }
+
+        private void pbPreview_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && (pMain.HorizontalScroll.Visible || pMain.VerticalScroll.Visible))
+            {
+                Cursor = Cursors.SizeAll;
+                dragStartPosition = e.Location;
+            }
+        }
+
+        private void pbPreview_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && (pMain.HorizontalScroll.Visible || pMain.VerticalScroll.Visible))
+            {
+                Point scrollOffset = new Point(e.X - dragStartPosition.X, e.Y - dragStartPosition.Y);
+                pMain.AutoScrollPosition = new Point(-pMain.AutoScrollPosition.X - scrollOffset.X, -pMain.AutoScrollPosition.Y - scrollOffset.Y);
+            }
+        }
+
+        private void pbPreview_MouseUp(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.Default;
         }
     }
 }
