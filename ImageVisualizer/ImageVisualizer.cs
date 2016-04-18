@@ -53,5 +53,11 @@ namespace ImageVisualizer
                 }
             }
         }
+
+        public static void TestShowVisualizer(object objectToVisualize)
+        {
+            VisualizerDevelopmentHost visualizerHost = new VisualizerDevelopmentHost(objectToVisualize, typeof(ImageVisualizer));
+            visualizerHost.ShowVisualizer();
+        }
     }
 }
