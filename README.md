@@ -19,7 +19,11 @@ This will open Image Visualizer window which will allow you to preview image. In
 
 1. Download `ImageVisualizer.dll` from [here](https://github.com/Jaex/ImageVisualizer/releases/latest).
 
-2. Copy `ImageVisualizer.dll` to `%USERPROFILE%\Documents\Visual Studio 2015\Visualizers` folder. If you are using different Visual Studio version then please select appropriate folder.
+2. Check if Windows blocked downloaded dll file by going to Properties window of the file (Right click -> Properties) and if it's blocked unblock it using this check box:
+
+ ![](http://i.imgur.com/TiPdU4G.png)
+
+3. Copy `ImageVisualizer.dll` to `%USERPROFILE%\Documents\Visual Studio 2015\Visualizers` folder. If you are using different Visual Studio version then please select appropriate folder.
 
 ### Option 2: Compile it yourself
 
