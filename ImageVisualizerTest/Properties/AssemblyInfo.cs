@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ImageVisualizerTest")]
+[assembly: AssemblyTitle("Image Visualizer Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jaex")]
-[assembly: AssemblyProduct("ImageVisualizerTest")]
+[assembly: AssemblyProduct("Image Visualizer Test")]
 [assembly: AssemblyCopyright("Copyright (c) Jaex")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
