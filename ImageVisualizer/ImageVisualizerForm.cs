@@ -71,6 +71,7 @@ namespace ImageVisualizer
 
         private void UpdateControls()
         {
+            tsMain.Renderer = new CustomToolStripProfessionalRenderer();
             tsddbZoom.HideImageMargin();
 
             for (int i = 0; i < MaxZoom; i++)
