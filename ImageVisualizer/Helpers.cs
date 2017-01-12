@@ -22,6 +22,8 @@
 
 #endregion License Information (GPL v3)
 
+using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -151,6 +153,20 @@ namespace ImageVisualizer
             }
 
             return null;
+        }
+
+        public static void OpenURL(string url)
+        {
+            if (!string.IsNullOrEmpty(url))
+            {
+                try
+                {
+                    Process.Start(url);
+                }
+                catch
+                {
+                }
+            }
         }
     }
 }

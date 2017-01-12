@@ -79,6 +79,9 @@
   <ItemGroup>
     <None Include="Resources\magnifier.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GitHub.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>set vs_path=%25USERPROFILE%25\Documents\Visual Studio 2015

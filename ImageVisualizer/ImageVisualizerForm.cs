@@ -171,6 +171,11 @@ namespace ImageVisualizer
             Helpers.SaveImageAsFile(Image);
         }
 
+        private void tsbOpenGitHub_Click(object sender, EventArgs e)
+        {
+            Helpers.OpenURL("https://github.com/Jaex/ImageVisualizer");
+        }
+
         private void pbPreview_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && (pMain.HorizontalScroll.Visible || pMain.VerticalScroll.Visible))

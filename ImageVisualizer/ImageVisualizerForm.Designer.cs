@@ -36,19 +36,20 @@
             this.tsslStatusPixelFormat = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatusType = new System.Windows.Forms.ToolStripStatusLabel();
             this.pMain = new System.Windows.Forms.Panel();
-            this.pbPreview = new System.Windows.Forms.PictureBox();
             this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.pbPreview = new System.Windows.Forms.PictureBox();
             this.tsddbZoom = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbCopyImage = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveImage = new System.Windows.Forms.ToolStripButton();
+            this.tsbOpenGitHub = new System.Windows.Forms.ToolStripButton();
             this.tscMain.BottomToolStripPanel.SuspendLayout();
             this.tscMain.ContentPanel.SuspendLayout();
             this.tscMain.TopToolStripPanel.SuspendLayout();
             this.tscMain.SuspendLayout();
             this.ssMain.SuspendLayout();
             this.pMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
             this.tsMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // tscMain
@@ -129,6 +130,24 @@
             this.pMain.Size = new System.Drawing.Size(684, 512);
             this.pMain.TabIndex = 1;
             // 
+            // tsMain
+            // 
+            this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsddbZoom,
+            this.tsbCopyImage,
+            this.tsbSaveImage,
+            this.tsbOpenGitHub});
+            this.tsMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.tsMain.Location = new System.Drawing.Point(0, 0);
+            this.tsMain.Name = "tsMain";
+            this.tsMain.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.tsMain.ShowItemToolTips = false;
+            this.tsMain.Size = new System.Drawing.Size(684, 25);
+            this.tsMain.Stretch = true;
+            this.tsMain.TabIndex = 0;
+            // 
             // pbPreview
             // 
             this.pbPreview.Location = new System.Drawing.Point(0, 0);
@@ -140,23 +159,6 @@
             this.pbPreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseDown);
             this.pbPreview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseMove);
             this.pbPreview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseUp);
-            // 
-            // tsMain
-            // 
-            this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsddbZoom,
-            this.tsbCopyImage,
-            this.tsbSaveImage});
-            this.tsMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.tsMain.Location = new System.Drawing.Point(0, 0);
-            this.tsMain.Name = "tsMain";
-            this.tsMain.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.tsMain.ShowItemToolTips = false;
-            this.tsMain.Size = new System.Drawing.Size(684, 25);
-            this.tsMain.Stretch = true;
-            this.tsMain.TabIndex = 0;
             // 
             // tsddbZoom
             // 
@@ -187,6 +189,17 @@
             this.tsbSaveImage.Text = "Save image...";
             this.tsbSaveImage.Click += new System.EventHandler(this.tsbSaveImage_Click);
             // 
+            // tsbOpenGitHub
+            // 
+            this.tsbOpenGitHub.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbOpenGitHub.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpenGitHub.Image = global::ImageVisualizer.Properties.Resources.GitHub;
+            this.tsbOpenGitHub.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpenGitHub.Name = "tsbOpenGitHub";
+            this.tsbOpenGitHub.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpenGitHub.Text = "Open GitHub page";
+            this.tsbOpenGitHub.Click += new System.EventHandler(this.tsbOpenGitHub_Click);
+            // 
             // ImageVisualizerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,9 +229,9 @@
             this.ssMain.PerformLayout();
             this.pMain.ResumeLayout(false);
             this.pMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -237,5 +250,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslStatusPixelFormat;
         private System.Windows.Forms.ToolStripStatusLabel tsslStatusType;
         private System.Windows.Forms.Panel pMain;
+        private System.Windows.Forms.ToolStripButton tsbOpenGitHub;
     }
 }
