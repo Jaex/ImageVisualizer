@@ -194,6 +194,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.tscMain);
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "ImageVisualizerForm";
@@ -202,6 +203,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Visualizer";
             this.TopMost = true;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ImageVisualizerForm_KeyUp);
             this.tscMain.BottomToolStripPanel.ResumeLayout(false);
             this.tscMain.BottomToolStripPanel.PerformLayout();
             this.tscMain.ContentPanel.ResumeLayout(false);

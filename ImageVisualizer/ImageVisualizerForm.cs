@@ -147,6 +147,14 @@ namespace ImageVisualizer
             pbPreview.Image = img;
         }
 
+        private void ImageVisualizerForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
         private void tsbCopyImage_Click(object sender, EventArgs e)
         {
             Helpers.CopyImage(Image);
