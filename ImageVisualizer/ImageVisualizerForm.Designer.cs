@@ -203,6 +203,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Image Visualizer";
             this.TopMost = true;
+            this.Shown += new System.EventHandler(this.ImageVisualizerForm_Shown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ImageVisualizerForm_KeyUp);
             this.tscMain.BottomToolStripPanel.ResumeLayout(false);
             this.tscMain.BottomToolStripPanel.PerformLayout();

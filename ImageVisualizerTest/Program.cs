@@ -40,12 +40,7 @@ namespace ImageVisualizerTest
 
             ImageVisualizer.ImageVisualizer.TestShowVisualizer(testImage);
 
-            /*
-            if (Debugger.IsAttached)
-            {
-                Debugger.Break();
-            }
-            */
+            //if (Debugger.IsAttached) Debugger.Break();
         }
 
         private static Image GetImageFromResource()

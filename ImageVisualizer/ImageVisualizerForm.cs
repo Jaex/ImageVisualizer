@@ -147,6 +147,11 @@ namespace ImageVisualizer
             pbPreview.Image = img;
         }
 
+        private void ImageVisualizerForm_Shown(object sender, EventArgs e)
+        {
+            Activate();
+        }
+
         private void ImageVisualizerForm_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
