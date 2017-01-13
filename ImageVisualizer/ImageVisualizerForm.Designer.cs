@@ -155,13 +155,13 @@
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.tsMain.ShowItemToolTips = false;
             this.tsMain.Size = new System.Drawing.Size(684, 25);
             this.tsMain.Stretch = true;
             this.tsMain.TabIndex = 0;
             // 
             // tsddbZoom
             // 
+            this.tsddbZoom.AutoToolTip = false;
             this.tsddbZoom.Image = global::ImageVisualizer.Properties.Resources.magnifier;
             this.tsddbZoom.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsddbZoom.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
@@ -171,6 +171,7 @@
             // 
             // tsbCopyImage
             // 
+            this.tsbCopyImage.AutoToolTip = false;
             this.tsbCopyImage.Image = global::ImageVisualizer.Properties.Resources.document_copy;
             this.tsbCopyImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCopyImage.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
@@ -181,6 +182,7 @@
             // 
             // tsbSaveImage
             // 
+            this.tsbSaveImage.AutoToolTip = false;
             this.tsbSaveImage.Image = global::ImageVisualizer.Properties.Resources.disk_black;
             this.tsbSaveImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSaveImage.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
