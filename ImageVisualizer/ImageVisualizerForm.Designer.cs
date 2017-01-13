@@ -36,8 +36,8 @@
             this.tsslStatusPixelFormat = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatusType = new System.Windows.Forms.ToolStripStatusLabel();
             this.pMain = new System.Windows.Forms.Panel();
-            this.tsMain = new System.Windows.Forms.ToolStrip();
             this.pbPreview = new System.Windows.Forms.PictureBox();
+            this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsddbZoom = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbCopyImage = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveImage = new System.Windows.Forms.ToolStripButton();
@@ -48,8 +48,8 @@
             this.tscMain.SuspendLayout();
             this.ssMain.SuspendLayout();
             this.pMain.SuspendLayout();
-            this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tscMain
@@ -130,6 +130,18 @@
             this.pMain.Size = new System.Drawing.Size(684, 512);
             this.pMain.TabIndex = 1;
             // 
+            // pbPreview
+            // 
+            this.pbPreview.Location = new System.Drawing.Point(0, 0);
+            this.pbPreview.Name = "pbPreview";
+            this.pbPreview.Size = new System.Drawing.Size(400, 400);
+            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbPreview.TabIndex = 0;
+            this.pbPreview.TabStop = false;
+            this.pbPreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseDown);
+            this.pbPreview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseMove);
+            this.pbPreview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseUp);
+            // 
             // tsMain
             // 
             this.tsMain.Dock = System.Windows.Forms.DockStyle.None;
@@ -147,18 +159,6 @@
             this.tsMain.Size = new System.Drawing.Size(684, 25);
             this.tsMain.Stretch = true;
             this.tsMain.TabIndex = 0;
-            // 
-            // pbPreview
-            // 
-            this.pbPreview.Location = new System.Drawing.Point(0, 0);
-            this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(400, 400);
-            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbPreview.TabIndex = 0;
-            this.pbPreview.TabStop = false;
-            this.pbPreview.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseDown);
-            this.pbPreview.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseMove);
-            this.pbPreview.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbPreview_MouseUp);
             // 
             // tsddbZoom
             // 
@@ -217,6 +217,7 @@
             this.Text = "Image Visualizer 1.1.0";
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.ImageVisualizerForm_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ImageVisualizerForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ImageVisualizerForm_KeyUp);
             this.tscMain.BottomToolStripPanel.ResumeLayout(false);
             this.tscMain.BottomToolStripPanel.PerformLayout();
@@ -229,9 +230,9 @@
             this.ssMain.PerformLayout();
             this.pMain.ResumeLayout(false);
             this.pMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -60,6 +60,7 @@ namespace ImageVisualizer
         }
 
         private Point dragStartPosition;
+        private bool escapeKeyDown;
 
         public ImageVisualizerForm(Image img)
         {
@@ -153,9 +154,14 @@ namespace ImageVisualizer
             Activate();
         }
 
+        private void ImageVisualizerForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            escapeKeyDown = e.KeyCode == Keys.Escape;
+        }
+
         private void ImageVisualizerForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (escapeKeyDown && e.KeyCode == Keys.Escape)
             {
                 Close();
             }
