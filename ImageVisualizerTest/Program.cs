@@ -24,7 +24,6 @@
 
 using ImageVisualizerTest.Properties;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -39,8 +38,6 @@ namespace ImageVisualizerTest
             Image testImage = GetImageFromResource();
 
             ImageVisualizer.ImageVisualizer.TestShowVisualizer(testImage);
-
-            //if (Debugger.IsAttached) Debugger.Break();
         }
 
         private static Image GetImageFromResource()
