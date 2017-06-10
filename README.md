@@ -12,8 +12,8 @@ This will open Image Visualizer window which will allow you to preview image. In
 
 ### Requirements
 
-* Visual Studio 2013 or higher versions
-* .NET Framework 3.5
+* Visual Studio 2017
+* .NET Framework 4.6.1
 
 ### Option 1: Download it
 
@@ -23,13 +23,13 @@ This will open Image Visualizer window which will allow you to preview image. In
 
  ![](http://i.imgur.com/TiPdU4G.png)
 
-3. Copy `ImageVisualizer.dll` to `%USERPROFILE%\Documents\Visual Studio 2015\Visualizers` folder. If you are using different Visual Studio version then please select appropriate folder.
+3. Copy `ImageVisualizer.dll` to `%USERPROFILE%\Documents\Visual Studio 2017\Visualizers` folder.
 
 ### Option 2: Compile it yourself
 
 1. Open `ImageVisualizer.sln` with Visual Studio and compile it.
 
-2. Post build event of Visual Studio will copy `ImageVisualizer.dll` file to `%USERPROFILE%\Documents\Visual Studio 2015\Visualizers` folder automatically. If you are not using Visual Studio 2015 then manually copy `ImageVisualizer.dll` file to appropriate folder.
+2. Post build event of Visual Studio will copy `ImageVisualizer.dll` file to `%USERPROFILE%\Documents\Visual Studio 2017\Visualizers` folder automatically.
 
 ## Credits
 
