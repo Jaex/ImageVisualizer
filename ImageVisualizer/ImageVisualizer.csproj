@@ -87,7 +87,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>set vs_path=%25USERPROFILE%25\Documents\Visual Studio 2017
+    <PostBuildEvent>set vs_path=%25USERPROFILE%25\Documents\Visual Studio 2019
 set visualizers_path=%25vs_path%25\Visualizers
 if exist "%25vs_path%25" (
     if not exist "%25visualizers_path%25" (
