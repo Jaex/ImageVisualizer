@@ -216,7 +216,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Image Visualizer 1.2.0";
+            this.Text = "Image Visualizer 1.3.0";
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.ImageVisualizerForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ImageVisualizerForm_KeyDown);
